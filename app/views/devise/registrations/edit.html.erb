@@ -11,7 +11,9 @@
     <% end %>
 
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= f.text_field :name %><br />
+    <%= f.label :birth_date %><br />
+    <%= f.date_field :birth_date %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
