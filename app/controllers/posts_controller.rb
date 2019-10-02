@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
     def index
       @posts = Post.all
-    end
 
     def new
         @post = Post.new
@@ -15,6 +14,7 @@ class PostsController < ApplicationController
       else
         render :new, status: :unprocessable_entity
       end
+
     end
 
     def show
@@ -27,13 +27,16 @@ class PostsController < ApplicationController
         if @post.user != current_user
           return render plain: "Not Allowed", status: :forbidden
         end
+
     end
 
     def update
         @post = Post.find(params[:id])
+
         if @post.user != current_user
           return render plain: "Not Allowed", status: :forbidden
         end
+
         @post.update_attributes(post_params)
         redirect_to root_path
     end
