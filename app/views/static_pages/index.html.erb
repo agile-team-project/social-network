@@ -1,0 +1,10 @@
+<h1>Welcome to Our Social Network!</h1>
+
+<% @posts.each do |post| %>
+  <div class="booyah-box col-10 offset-1">
+  <h3><%= post.user.name %></h3>
+  <p><%= post.text %></p>
+  <p><%= post.photo %></p>
+  <p><%= post.video %></p>
+  </div>
+<% end %>
