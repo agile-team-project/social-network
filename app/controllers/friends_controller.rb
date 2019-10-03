@@ -1,7 +1,7 @@
 class FriendsController < ApplicationController
     def index
         # @friends = Friend.includes(:user).where(user: current_user).order('Users.name')
-        @friends = current_user.friends.order('Users.name')
+        @friends = current_user.friends.includes(:user).order('Users.name')
     end
 
     # /friends/search?q=john
