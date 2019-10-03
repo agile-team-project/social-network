@@ -1,0 +1,29 @@
+<h3>Friends</h3>
+
+<% if @friends.count > 0 %>
+<div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th width="35%">Email</th>
+        <th width="35%">Name</th>
+     </tr>
+    </thead>
+
+    <tbody>
+      <% @friends.each do |f| %>
+        <tr>
+          <td width="35%"><%= f.friend.email %></td>
+          <td width="35%"><%= f.friend.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<% else %>
+
+<p>No friends found.</p>
+
+<% end %>
