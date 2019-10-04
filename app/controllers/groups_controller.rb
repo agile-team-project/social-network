@@ -1,5 +1,6 @@
-class GroupsController < ApplicationController
+# frozen_string_literal: true
 
+class GroupsController < ApplicationController
   def index
     @groups = Group.all.order(:name)
   end
@@ -19,13 +20,9 @@ class GroupsController < ApplicationController
     redirect_to root_path
   end
 
-  def edit
+  def edit; end
 
-  end
-
-  def update
-    
-  end
+  def update; end
 
   def show
     @group = Group.find(params[:id])
