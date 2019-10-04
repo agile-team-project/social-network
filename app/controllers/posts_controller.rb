@@ -9,9 +9,9 @@ class PostsController < ApplicationController
     end
 
     def create
-      current_user.posts.create(post_params)
-      if @post.valid?
-        redirect_to root_path
+     post = Post.new(post_params.merge(user_id: current_user.id))
+      if post.save
+        redirect_to post_path(post)
       else
         render :new, status: :unprocessable_entity
       end
@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
+        @comment = Comment.new
     end
 
     def edit
@@ -39,7 +40,12 @@ class PostsController < ApplicationController
         end
 
         @post.update_attributes(post_params)
+        if @post.valid?
         redirect_to root_path
+
+        else
+    render :edit, status: :unprocessable_entity
+  end
     end
 
     private

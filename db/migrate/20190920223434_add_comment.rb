@@ -8,5 +8,6 @@ class AddComment < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     add_index :comments, :post_id
+    add_index :comments, [:user_id, :post_id]
   end
 end
