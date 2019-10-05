@@ -8,10 +8,10 @@ class AddComment < ActiveRecord::Migration[5.2]
       t.string :video
       t.integer :post_id
       t.integer :user_id
-      t.datetime :create_at, null: false
-      t.datetime :update_at, null: false
-      t.index ['post_id'], name: 'index_comments_on_post_id'
-      t.index ['user_id'], name: 'index_comments_on_user_id'
+     # t.datetime :create_at, null: false
+     # t.datetime :update_at, null: false
+     # t.index ['post_id'], name: 'index_comments_on_post_id'
+     # t.index ['user_id'], name: 'index_comments_on_user_id'
       t.timestamps
     end
     add_index :comments, :post_id
