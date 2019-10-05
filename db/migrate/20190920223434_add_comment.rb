@@ -16,5 +16,6 @@ class AddComment < ActiveRecord::Migration[5.2]
     end
     add_index :comments, :post_id
     add_index :comments, %i[user_id post_id]
+    add_index :comments, :user_id
   end
 end
