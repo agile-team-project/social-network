@@ -1,5 +1,29 @@
 <h1> This is a test group#show page </h1>
 <br />
-<h1>The group name is <%= @group.name %></h1>
+<h1>The group name is <%= current_group.name %></h1>
 <br />
-<h2><%= @group.description %></h2>
+<h2><%= current_group.description %></h2>
+
+<% if !current_group.users.include? current_user %>
+
+  <%= link_to 'Join Group',join_group_path(current_group), method: :patch, class: 'btn btn-primary' %>
+
+<% elsif current_group.users.include? current_user %>
+
+  <%= link_to 'Leave Group', leave_group_path(current_group), method: :patch, class: 'btn btn-primary' %>
+
+<% end %>
+
+
+<h1> The users are: </h1>
+<% current_group.users.each do |u| %>
+  <%= u.name %>
+  <br />
+<% end %>
+
+<h1> The owner is <%= current_group.owner.name %> </h1>
+<h1> You are <%= current_user.name %> </h1>
+
+<% if current_user == current_group.owner %>
+  <%= link_to 'Delete group', group_path(current_group), method: :delete, class: 'btn btn-primary' %>
+<% end %>
