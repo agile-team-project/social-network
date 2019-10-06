@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    
   end
 
   def create
@@ -22,6 +23,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @photos = Photos.new
   end
 
   def edit

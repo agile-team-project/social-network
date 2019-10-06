@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   root 'static_pages#index'
 
   resources :posts do
-    resources :comments, only: :create
+  resources :comments, only: :create
+  resources :photos, only: :create
   end
 
   resources :posts
   resources :groups do
-    resources :posts
+  resources :posts
   end
   resources :friends, only: %i[index create destroy] do
     collection do
