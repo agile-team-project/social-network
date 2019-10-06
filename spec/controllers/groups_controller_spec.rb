@@ -1,36 +1,67 @@
-require 'rails_helper'
+# frozen_string_literal: true
+class GroupsController < ApplicationController
+  before_action :authenticate_user!
 
-RSpec.describe GroupsController, type: :controller do
-  describe "groups#create action" do
-    it "should allow the creation of groups when given the required info" do
-      user = FactoryBot.create(:user)
-      sign_in user
-      post :create, params: { group: {name: "group name", description: "adjasd", category: "asd"} }
+  def index
+    @groups = Group.all.order(:name)
+  end
 
-      group = Group.last
-      
-      expect(response).to redirect_to group_path(group)
+  def new
+    @group = Group.new
+  end
 
+  def create
+    @group = Group.new(group_params)
+    @group.owner = current_user
+    @group.users << current_user
+    @group.save
+    redirect_to group_path(@group)
+  end
 
-      expect(group.name).to eq("group name")
-      expect(group.description).to eq("adjasd")
-    end 
-  end  
-
-  describe "groups#join action" do
-    it "should allow a user to join a group" do
-      user1 = FactoryBot.create(:user)
-      sign_in user1
-
-      post :create, params: { group: {name: "group name", description: "adjasd", category: "asd"} }
-      group = Group.last
-      expect(group.owner).to eq(user1)
-      sign_out user1
-
-      user2 = FactoryBot.create(:user)
-      sign_in user2
-      patch :join, params: {id: group.id}
-      expect(group.users).to include(user2)
+  def destroy
+    if current_user == current_group.owner
+      current_group.destroy
+      redirect_to root_path
+    else
+      redirect_to group_path(current_group), alert: 'You are not the owner of the group.'
     end
+  end
+
+  def edit; end
+
+  def update; end
+
+  def join
+    if current_group.users.include? current_user
+      redirect_to group_path(current_group), alert: "You are already a member"
+    else
+      current_group.users << current_user
+      redirect_to group_path(current_group)
+    end
+  end
+
+  def leave
+    if current_user == current_group.owner
+      redirect_to group_path(current_group),alert: "Group owners cannot leave groups, pass ownership or delete group."
+    else
+      current_group.users.delete(current_user)
+      redirect_to group_path(current_group) 
+    end
+      
+  end
+
+  def show
+
+  end
+
+  private
+
+  helper_method :current_group
+  def current_group
+    @current_group ||= Group.find(params[:id])
+  end
+
+  def group_params
+    params.require(:group).permit(:name, :description, :category)
   end
 end

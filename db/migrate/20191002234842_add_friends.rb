@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AddFriends < ActiveRecord::Migration[5.2]
   def change
-  	create_table :friends do |t|
+    create_table :friends do |t|
       t.integer :user_id
       t.integer :friend_id
 
@@ -10,4 +12,3 @@ class AddFriends < ActiveRecord::Migration[5.2]
     add_index :friends, :friend_id
   end
 end
-  

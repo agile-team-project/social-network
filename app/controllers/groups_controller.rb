@@ -1,5 +1,7 @@
+# frozen_string_literal: true
 class GroupsController < ApplicationController
   before_action :authenticate_user!
+
 
   def index
     @groups = Group.all.order(:name)
@@ -26,13 +28,9 @@ class GroupsController < ApplicationController
     end
   end
 
-  def edit
+  def edit; end
 
-  end
-
-  def update
-    
-  end
+  def update; end
 
   def join
     if current_group.users.include? current_user
