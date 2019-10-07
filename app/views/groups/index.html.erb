@@ -1,0 +1,9 @@
+<h1> Test index page for groups#index </h1>
+<br />
+  <% if @groups.present? %>
+    <% @groups.each do |group| %>
+      <h2 class="text-center">
+        <%= link_to group.name, group_path(group) %>
+      </h2>
+    <% end %>
+  <% end %>

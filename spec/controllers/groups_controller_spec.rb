@@ -1,18 +1,67 @@
 # frozen_string_literal: true
+class GroupsController < ApplicationController
+  before_action :authenticate_user!
 
-require 'rails_helper'
+  def index
+    @groups = Group.all.order(:name)
+  end
 
-RSpec.describe GroupsController, type: :controller do
-  describe 'groups#create action' do
-    it 'should allow the creation of groups when given the required info' do
-      post :create, params: { group: { name: 'group name', description: 'adjasd' } }
+  def new
+    @group = Group.new
+  end
 
-      group = Group.last
+  def create
+    @group = Group.new(group_params)
+    @group.owner = current_user
+    @group.users << current_user
+    @group.save
+    redirect_to group_path(@group)
+  end
 
-      expect(response).to redirect_to group_path(group)
-
-      expect(group.name).to eq('group name')
-      expect(group.description).to eq('adjasd')
+  def destroy
+    if current_user == current_group.owner
+      current_group.destroy
+      redirect_to root_path
+    else
+      redirect_to group_path(current_group), alert: 'You are not the owner of the group.'
     end
+  end
+
+  def edit; end
+
+  def update; end
+
+  def join
+    if current_group.users.include? current_user
+      redirect_to group_path(current_group), alert: "You are already a member"
+    else
+      current_group.users << current_user
+      redirect_to group_path(current_group)
+    end
+  end
+
+  def leave
+    if current_user == current_group.owner
+      redirect_to group_path(current_group),alert: "Group owners cannot leave groups, pass ownership or delete group."
+    else
+      current_group.users.delete(current_user)
+      redirect_to group_path(current_group) 
+    end
+      
+  end
+
+  def show
+
+  end
+
+  private
+
+  helper_method :current_group
+  def current_group
+    @current_group ||= Group.find(params[:id])
+  end
+
+  def group_params
+    params.require(:group).permit(:name, :description, :category)
   end
 end

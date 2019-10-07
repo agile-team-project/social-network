@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :groups do
-  resources :posts
+    resources :posts
+    member do
+      patch 'join'
+      patch 'leave'
+    end
   end
   resources :friends, only: %i[index create destroy] do
     collection do
