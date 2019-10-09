@@ -2,8 +2,10 @@
   <h1>New Post</h1>
   <%= simple_form_for @post do |f| %>
     <%= f.input :text %>
-    <%= f.input :photo %>
-    <%= f.input :video %>
+    <%= f.label :photo %>
+    <%= f.file_field :photo%>
+    <%= f.label :video %>
+    <%= f.file_field :video %>
     <br />
     <%= f.submit 'Post', class: 'btn btn-primary' %>
     <% end %>

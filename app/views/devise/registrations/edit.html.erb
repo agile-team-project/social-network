@@ -12,8 +12,11 @@
 
     <%= f.label :name %><br />
     <%= f.text_field :name %><br />
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %><br />
+    <%= f.hidden_field :avatar_cache %>
     <%= f.label :birth_date %><br />
-    <%= f.date_field :birth_date %>
+    <%= f.date_field :birth_date %><br/>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,

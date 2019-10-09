@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :birth_date) }
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :birth_date, :avatar, :avatar_cache) }
 
-    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :birth_date) }
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :birth_date, :avatar, :avatar_cache) }
     end
 end
 # frozen_string_literal: true

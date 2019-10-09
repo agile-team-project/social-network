@@ -8,7 +8,15 @@
 
   <div class="booyah-box col-10 offset-1">
     <h1><%= link_to post.text, post_path(post) %></h1><br />
-  <h3><%= post.user.name %></h3>
+  
+    <div class:'img-circle'>
+      <% if post.user.avatar? %>
+      <%= image_tag post.user.avatar%>
+      <% else %>
+      <%= image_tag "user.png" %>
+      <% end %>
+    </div>
+    <h3><%= post.user.name %></h3>
   <p><%= post.text %></p>
   <p><%= post.photo %></p>
   <p><%= post.video %></p>
