@@ -1,4 +1,12 @@
 <h1>Your Posts</h1>
+
+ <%= simple_form_for :search, url: posts_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+   <%= f.input :search, label: '', placeholder: 'Search' %>
+   <%= f.submit 'Search', class: 'btn btn-primary' %>
+   <% end %>
+
+
+
 <% @posts.each do |post| %>
   <div class="booyah-box col-10 offset-1">
   <p><%= link_to post.text, post_path(post) %></p>

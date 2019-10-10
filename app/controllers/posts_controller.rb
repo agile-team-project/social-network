@@ -1,7 +1,16 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
     def index
-      @posts = Post.all
+      search = params[:search]
+
+      if search.present?
+        puts "present"
+        name = search[:search]
+        @posts = Post.joins(:user).where('users.name ILIKE ?', "%#{name}%")
+      else
+        @posts = Post.all
+
+      end
     end
     
     def new
