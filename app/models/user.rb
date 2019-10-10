@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :friends
   has_and_belongs_to_many :groups
-  has_one_attached :avatar
+  #has_one_attached :avatar
 
   scope :with_name_or_email, lambda { |q|
                                where '(name ILIKE ?) OR (email ILIKE ?)',

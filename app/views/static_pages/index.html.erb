@@ -11,9 +11,9 @@
   
     <div class:'img-circle'>
       <% if post.user.avatar? %>
-      <%= image_tag post.user.avatar%>
+        <%= image_tag post.user.avatar.url %>
       <% else %>
-      <%= image_tag "user.png" %>
+        <%= image_tag "user.png" %>
       <% end %>
     </div>
     <h3><%= post.user.name %></h3>

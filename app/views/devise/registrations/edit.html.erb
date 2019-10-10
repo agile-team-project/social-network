@@ -12,6 +12,15 @@
 
     <%= f.label :name %><br />
     <%= f.text_field :name %><br />
+    <div class="row">
+      <div class='col-sm-4'>
+        <% if resource.avatar.present? %>
+          <%= image_tag resource.avatar.url, class:"rounded-circle" %>
+        <% else %>
+          <%= image_tag "user", class:"rounded-circle" %>
+        <% end %>
+      </div>
+    </div>
     <%= f.label :avatar %><br />
     <%= f.file_field :avatar %><br />
     <%= f.hidden_field :avatar_cache %>

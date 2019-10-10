@@ -6,5 +6,6 @@ module UsersHelper
       user.avatar.variant(resize: "#{size}x#{size}!")
     else
       user.png(user.email, size: size)
+    end
   end
 end
