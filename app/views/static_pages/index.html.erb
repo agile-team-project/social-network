@@ -10,11 +10,11 @@
       <p><%= post.photo %></p>
       <p><%= post.video %></p>
       <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %>
-      <div class:'img-circle'>
+      <div>
         <% if post.user.avatar? %>
-          <%= image_tag post.user.avatar.url %>
+          <%= image_tag post.user.avatar.url, class:'avatar_image'%>
         <% else %>
-          <%= image_tag "user.png" %>
+          <%= image_tag "user.png", class:'avatar_image' %>
         <% end %>
       </div>
       <h3><%= post.user.name %></h3>
@@ -49,6 +49,13 @@
       <blockquote>
         <%= post.comments.last.text %>
         <small><%= post.comments.last.user.name %></small>
+          <div>
+            <% if post.comments.user.avatar? %>
+              <%= image_tag post.user.avatar.url, class:'avatar_image'%>
+            <% else %>
+              <%= image_tag "user.png", class:'avatar_image' %>
+            <% end %>
+          </div>
       </blockquote>
     </div>
   <% end %>
