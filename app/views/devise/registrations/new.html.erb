@@ -6,11 +6,6 @@
   <div class="form-inputs">
     <%= f.label :name %><br />
     <%= f.text_field :name %> <br />
-    <div class="row">
-      <div class='col-sm-4'>
-        <%= img_tag user.avatar(resource, 100), class="rounded-circle" %>
-      </div>
-    </div>
     <%= f.label :avatar %><br />
     <%= f.file_field :avatar %><br />
     <%= f.hidden_field :avatar_cache %>
