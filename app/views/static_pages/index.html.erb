@@ -1,9 +1,11 @@
 
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
 <div class="clear"></div>
 
 <br /><br />
 <% @posts.each do |post| %>
+
   <% if post.user.present? %>
     <div class="booyah-box col-10 offset-1">
       <h1><%= link_to post.text, post_path(post) %></h1><br />
@@ -41,7 +43,11 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
+
   </div>
+</li> 
+</ul>
+</div>              
 </div>
   
   <% if post.comments.present? %>
@@ -61,8 +67,7 @@
   <% end %>
 
 </div>
-
-<% end %>
+     
 
 <%= link_to 'Create a group', new_group_path, class: 'btn btn-primary' %>
 <%= link_to 'View Groups', groups_path, class: 'btn btn-primary' %>
