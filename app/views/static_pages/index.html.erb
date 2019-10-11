@@ -1,4 +1,5 @@
 
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
 <div class="clear"></div>
 
@@ -7,59 +8,71 @@
 <% if post.user.present? %>
 
   <div class="booyah-box col-10 offset-1">
-    <h1><%= link_to post.text, post_path(post) %></h1><br />
-  <h3><%= post.user.name %></h3>
+    <div class="post-heading">
+   <h1><%= link_to post.user.name, post_path(post) %></h1><br />
+  <!-- <h3><%= post.user.name %></h3> -->
   <p><%= post.text %></p>
   <p><%= post.photo %></p>
   <p><%= post.video %></p>
-
-  
-  
-
-          <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Add a comment
-</button>
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-        
-      </div>
-  
  
-  <div class="modal-body">
+<hr>
+  <div class="stats">
+     <a href="#" class="btn btn-default stat-item">
+       <i class="fa fa-thumbs-up icon"></i>2
+     </a>
+   <!--  <a href="#" class="btn btn-default stat-item">
+       <i class="fa fa-share icon"></i>12
+     </a> -->
+ <hr>       
+</div> 
 
-    <br />
-    </div>
-    <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-     
-     </div>
-      <% end %>
-    </div>
-  </div>
-</div>
-  
-  <% if post.comments.present? %>
-      <div class="col-12">
-        <blockquote>
-
-          <%= post.comments.last.text %>
-          <small><%= post.comments.last.user.name %></small>
-        </blockquote>
+ <div class="post-footer">
+   <div class="input-group"> 
+     <input class="form-control" placeholder="Add a comment" type="text">
+   
+      
+        <span class="input-group-addon">
           
-             
-  
-  </div>
+         <a href="#"><i class="fa fa-edit"></i></a>  
+        </span>
+ </div>
 
-<% end %>
+  <ul class="comments-list">
+     <li class="comment">
+       <a class="pull-left" href="#">
+         <div class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+       </a>
+
+  <div class="comment-body">
+    <div class="comment-heading">
+     <p><%= post.text %></p>
+
+     <a class="pull-center" href="#">
+     <% if post.comments.present? %>
+     <medium><%= post.comments.last.user.name %></medium>
+     </a>
+     <%= post.comments.last.text %>
+          
+        </div>
+      </div>
+    <% end %>                         
+   </div>                     
+  </div>
+</li> 
+</ul>
+</div>              
+</div>
+ <% end %>    
+
+
+
+ 
+
+
+
+   
+
+          
 
 
 </div>
