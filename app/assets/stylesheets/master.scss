@@ -49,10 +49,10 @@ body {
 }
 
 
-
-
-
-
+.avatar_image {
+  border-radius: 50%;
+  size: 30px;
+}
 
 .post .post-heading {
   height: 95px;
@@ -141,4 +141,5 @@ body {
 .post .post-footer .comments-list .comment > .comments-list {
   margin-left: 50px;
 }
+
 
