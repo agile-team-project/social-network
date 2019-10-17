@@ -1,4 +1,11 @@
-<h1>Timeline</h1>
+
+<h1>Your Posts</h1>
+
+ <%= simple_form_for :search, url: posts_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+   <%= f.input :search, label: '', placeholder: 'Search' %>
+   <%= f.submit 'Search', class: 'btn btn-primary' %>
+   <% end %>
+
 <% @posts.each do |post| %>
 <div>
   <div class="booyah-box col-10 offset-1">
@@ -6,8 +13,6 @@
   <p><%= post.photo %></p><br />
   <p><%= post.video %></p><br />
 
-
-      
     
     <% if post.comments.present? %>
   <div class="col-12">

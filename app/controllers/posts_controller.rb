@@ -1,14 +1,23 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update]
-  def index
-    @posts = Post.all
-  end
+
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+    def index
+      search = params[:search]
+
+      if search.present?
+        puts "present"
+        name = search[:search]
+        @posts = Post.joins(:user).where('users.name ILIKE ?', "%#{name}%")
+      else
+        @posts = Post.all
+
+      end
+    end
 
   def new
     @post = Post.new
-    
   end
 
   def create
