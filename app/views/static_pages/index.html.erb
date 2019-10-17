@@ -1,11 +1,73 @@
-<h1>Welcome to Our Social Network!</h1>
 
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+<div class="clear"></div>
+
+<br /><br />
 <% @posts.each do |post| %>
-  <div class="booyah-box col-10 offset-1">
-  <h3><%= post.user.name %></h3>
-  <p><%= post.text %></p>
-  <p><%= post.photo %></p>
-  <p><%= post.video %></p>
-  </div>
-<% end %>
 
+  <% if post.user.present? %>
+    <div class="booyah-box col-10 offset-1">
+      <h1><%= link_to post.text, post_path(post) %></h1><br />
+      <p><%= post.photo %></p>
+      <p><%= post.video %></p>
+      <%= post.created_at.strftime("%B %d %Y, %l:%M%P") %>
+      <div>
+        <% if post.user.avatar? %>
+          <%= image_tag post.user.avatar.url, class:'avatar_image'%>
+        <% else %>
+          <%= image_tag "user.png", class:'avatar_image' %>
+        <% end %>
+      </div>
+      <h3><%= post.user.name %></h3>
+      <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          Add a comment
+        </button>
+    </div>
+  <% end %>
+
+  
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <br />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+  </div>
+</li> 
+</ul>
+</div>              
+</div>
+  
+  <% if post.comments.present? %>
+    <div class="col-12">
+      <blockquote>
+        <%= post.comments.last.text %>
+        <small><%= post.comments.last.user.name %></small>
+          <div>
+            <% if post.comments.user.avatar? %>
+              <%= image_tag post.user.avatar.url, class:'avatar_image'%>
+            <% else %>
+              <%= image_tag "user.png", class:'avatar_image' %>
+            <% end %>
+          </div>
+      </blockquote>
+    </div>
+  <% end %>
+<% end %>
+</div>
+     
+
+<%= link_to 'Create a group', new_group_path, class: 'btn btn-primary' %>
+<%= link_to 'View Groups', groups_path, class: 'btn btn-primary' %>

@@ -1,3 +1,4 @@
+
 <h1>Your Posts</h1>
 
  <%= simple_form_for :search, url: posts_path, method: "GET", html: { class: 'form-inline' } do |f| %>
@@ -5,12 +6,26 @@
    <%= f.submit 'Search', class: 'btn btn-primary' %>
    <% end %>
 
-
-
 <% @posts.each do |post| %>
+<div>
   <div class="booyah-box col-10 offset-1">
-  <p><%= link_to post.text, post_path(post) %></p>
-  <p><%= post.photo %></p>
-  <p><%= post.video %></p>
+  <h1><%= link_to post.text, posts_path(post) %></h1><br />
+  <p><%= post.photo %></p><br />
+  <p><%= post.video %></p><br />
+
+    
+    <% if post.comments.present? %>
+  <div class="col-12">
+    <blockquote>
+       <%= post.comments.last.text %>
+      <small><%= post.comments.last.user.name %></small>
+    </blockquote>
   </div>
+  <% end %>
+
 <% end %>
+</div>
+
+<% end %>
+
+ 

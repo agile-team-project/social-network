@@ -1,0 +1,16 @@
+<br />
+  <% if @groups.present? %>
+    <% @groups.each do |group| %>
+    <div class="row">
+      <div class="booyah-box col-10 offset-1">
+        <h2 class="text-center">
+          <%= link_to group.name, group_path(group) %>
+        </h2>
+        <%= link_to group_path(group) do %>
+          <%= image_tag group.group_avatar.url class: 'img-fluid' %>
+        <% end %>
+        <h2 align="middle"> <%= group.description %> </h2>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
