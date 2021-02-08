@@ -70,7 +70,7 @@ gem 'bundler'
 gem 'simple_form'
 
 gem 'bootstrap', '4.0.0.alpha6'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'mini_magick'
 gem 'devise'
 gem 'jquery-rails'
